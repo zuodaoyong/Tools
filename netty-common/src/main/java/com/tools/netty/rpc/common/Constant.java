@@ -1,4 +1,4 @@
-package com.tools.netty.rpc.server.config;
+package com.tools.netty.rpc.common;
 
 public class Constant {
 
@@ -11,4 +11,5 @@ public class Constant {
     public static final String ZK_NAMESPACE = "netty-rpc";
 
     public static final String SERVICE_CONCAT_TOKEN = "#";
+
 }

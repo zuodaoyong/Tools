@@ -13,4 +13,9 @@ public class RpcResponse implements Serializable {
     private String error;
 
     private Object result;
+
+    public boolean isError() {
+        return error != null;
+    }
+
 }

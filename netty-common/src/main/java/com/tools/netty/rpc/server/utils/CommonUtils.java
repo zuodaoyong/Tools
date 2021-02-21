@@ -1,6 +1,6 @@
 package com.tools.netty.rpc.server.utils;
 
-import static com.tools.netty.rpc.server.config.Constant.SERVICE_CONCAT_TOKEN;
+import static com.tools.netty.rpc.common.Constant.SERVICE_CONCAT_TOKEN;
 
 public class CommonUtils {
 

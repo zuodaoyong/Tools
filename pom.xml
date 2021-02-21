@@ -28,6 +28,7 @@
         <curator.version>5.1.0</curator.version>
         <kryo.version>4.0.2</kryo.version>
         <cglib.version>3.3.0</cglib.version>
+        <commons.collections4.version>4.1</commons.collections4.version>
     </properties>
 
     <dependencyManagement>
@@ -77,6 +78,11 @@
                 <groupId>cglib</groupId>
                 <artifactId>cglib</artifactId>
                 <version>${cglib.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>${commons.collections4.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

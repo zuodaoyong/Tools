@@ -1,6 +1,6 @@
 package com.tools.netty.rpc.server.registry;
 
-import com.tools.netty.rpc.server.config.Constant;
+import com.tools.netty.rpc.common.Constant;
 import com.tools.netty.rpc.server.protocol.RpcProtocol;
 import com.tools.netty.rpc.server.protocol.RpcServiceInfo;
 import com.tools.netty.rpc.server.zookeeper.CuratorClient;

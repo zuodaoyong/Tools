@@ -1,6 +1,6 @@
 package com.tools.netty.rpc.server.zookeeper;
 
-import com.tools.netty.rpc.server.config.Constant;
+import com.tools.netty.rpc.common.Constant;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.recipes.cache.*;
@@ -64,15 +64,16 @@ public class CuratorClient {
         return this.client.getChildren().forPath(path);
     }
 
-    public void watchTreeNode(String path, CuratorCacheListener listener) {
-        CuratorCache curatorCache= CuratorCache.bridgeBuilder(this.client,path).build();
-        curatorCache.listenable().addListener(listener);
+    public void watchTreeNode(String path, TreeCacheListener listener) {
+        TreeCache treeCache = new TreeCache(client, path);
+        treeCache.getListenable().addListener(listener);
     }
 
-    public void watchPathChildrenNode(String path, CuratorCacheListener listener) throws Exception {
-        CuratorCache curatorCache = CuratorCache.bridgeBuilder(this.client, path).build();
-        curatorCache.start();
-        curatorCache.listenable().addListener(listener);
+    public void watchPathChildrenNode(String path, PathChildrenCacheListener listener) throws Exception {
+        PathChildrenCache pathChildrenCache = new PathChildrenCache(client, path, true);
+        //BUILD_INITIAL_CACHE 代表使用同步的方式进行缓存初始化。
+        pathChildrenCache.start(PathChildrenCache.StartMode.BUILD_INITIAL_CACHE);
+        pathChildrenCache.getListenable().addListener(listener);
     }
 
     public void close(){

@@ -1,6 +1,7 @@
 package com.tools.netty.rpc.server.protocol;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -41,6 +42,10 @@ public class RpcProtocol implements Serializable {
             return false;
         }
         return thisList.containsAll(thatList) && thatList.containsAll(thisList);
+    }
+
+    public static RpcProtocol fromJson(String json){
+        return new Gson().fromJson(json,new TypeToken<RpcProtocol>(){}.getType());
     }
 
     @Override
