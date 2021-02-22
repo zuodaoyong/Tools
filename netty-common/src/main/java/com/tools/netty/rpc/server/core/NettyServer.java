@@ -80,6 +80,7 @@ public class NettyServer implements Server {
                 }
             }
         });
+        this.thread.start();
     }
 
     @Override

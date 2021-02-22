@@ -1,6 +1,7 @@
 package com.tools.rpc;
 
 import com.tools.annotation.RpcAutowired;
+import com.tools.beans.RpcServerConfig;
 import com.tools.netty.rpc.client.connect.ConnectionManager;
 import com.tools.netty.rpc.client.discovery.ServiceDiscovery;
 import com.tools.netty.rpc.client.proxy.ObjectProxy;
@@ -8,8 +9,10 @@ import com.tools.netty.rpc.client.proxy.RpcService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Proxy;
@@ -17,6 +20,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+@Component
 @Slf4j
 public class RpcClient implements ApplicationContextAware, DisposableBean {
 
@@ -24,8 +28,8 @@ public class RpcClient implements ApplicationContextAware, DisposableBean {
     private static ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(16, 16,
             600L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(1000));
 
-    public RpcClient(String address) {
-        this.serviceDiscovery = new ServiceDiscovery(address);
+    public RpcClient(@Qualifier(value = "rpcServerConfig") RpcServerConfig rpcServerConfig) {
+        this.serviceDiscovery = new ServiceDiscovery(rpcServerConfig.getRegistryAddress());
     }
 
     public static <T, P> RpcService createAsyncService(Class<T> interfaceClass, String version) {

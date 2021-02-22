@@ -8,7 +8,7 @@ public class Constant {
     public static final String ZK_REGISTRY_PATH = "/registry";
     public static final String ZK_DATA_PATH = ZK_REGISTRY_PATH + "/data";
 
-    public static final String ZK_NAMESPACE = "netty-rpc";
+    public static final String ZK_NAMESPACE = "netty-rpc-zk";
 
     public static final String SERVICE_CONCAT_TOKEN = "#";
 

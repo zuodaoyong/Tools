@@ -1,6 +1,6 @@
 server:
-  port: 8000
+  port: 8081
 
 rpc:
-  serverAddress: 127.0.0.1:18866
+  serverAddress: 127.0.0.1:18867
   registryAddress: 192.168.88.130:2181
